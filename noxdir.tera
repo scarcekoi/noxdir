@@ -5,6 +5,7 @@ whiskers:
     - flavor
     - accent
   filename: "themes/{{ flavor.identifier }}/catppuccin-{{ flavor.identifier }}-{{ accent }}.json"
+  hex_format: "#{{r}}{{g}}{{b}}{{z}}"
 rainbow:
 - {name: rosewater, id: 0}
 - {name: flamingo, id: 1}
@@ -25,60 +26,60 @@ rainbow:
   {%- if accent == color -%}{{ color | sub(lightness=20) | add(saturation=15) | get(key="hex") }}{%- else -%}{{ color.hex }}{%- endif -%}
 {%- endmacro -%}
   "statusBar": {
-    "text": "#{{ text.hex }}",
-    "blockText": "#{{ crust.hex }}",
-    "background": "#{{ overlay2.hex }}",
-    "versionBackground": "#{{ flavor.colors[accent].hex }}",
+    "text": "{{ text.hex }}",
+    "blockText": "{{ crust.hex }}",
+    "background": "{{ overlay2.hex }}",
+    "versionBackground": "{{ flavor.colors[accent].hex }}",
     "drives": {
-      "modeBackground": "#{{ flavor.colors[accent].hex }}",
-      "capacityBackground": "#{{ flavor.colors[accent].hex }}",
-      "freeBackground": "#{{ flavor.colors[accent].hex }}",
-      "usedBackground": "#{{ flavor.colors[accent].hex }}"
+      "modeBackground": "{{ flavor.colors[accent].hex }}",
+      "capacityBackground": "{{ flavor.colors[accent].hex }}",
+      "freeBackground": "{{ flavor.colors[accent].hex }}",
+      "usedBackground": "{{ flavor.colors[accent].hex }}"
     },
     "dirs": {
-      "pathBackground": "#{{ flavor.colors[accent].hex }}",
-      "modeBackground": "#{{ flavor.colors[accent].hex }}",
-      "sizeBackground": "#{%- if accent == "peach" -%}{{ pink.hex }}{%- else -%}{{ peach.hex }}{%- endif -%}",
-      "dirsBackground": "#{%- if accent == "blue" -%}{{ lavender.hex }}{%- else -%}{{ blue.hex }}{%- endif -%}",
-      "filesBackground": "#{%- if accent == "green" -%}{{ sapphire.hex }}{%- else -%}{{ green.hex }}{%- endif -%}",
-      "rowsCounter": "#{%- if accent == "maroon" -%}{{ mauve.hex }}{%- else -%}{{ maroon.hex }}{%- endif -%}"
+      "pathBackground": "{{ flavor.colors[accent].hex }}",
+      "modeBackground": "{{ flavor.colors[accent].hex }}",
+      "sizeBackground": "{%- if accent == "peach" -%}{{ pink.hex }}{%- else -%}{{ peach.hex }}{%- endif -%}",
+      "dirsBackground": "{%- if accent == "blue" -%}{{ lavender.hex }}{%- else -%}{{ blue.hex }}{%- endif -%}",
+      "filesBackground": "{%- if accent == "green" -%}{{ sapphire.hex }}{%- else -%}{{ green.hex }}{%- endif -%}",
+      "rowsCounter": "{%- if accent == "maroon" -%}{{ mauve.hex }}{%- else -%}{{ maroon.hex }}{%- endif -%}"
     }
   },
   "chart": {
-    "border": "#{{ surface2.hex }}",
+    "border": "{{ surface2.hex }}",
     {%- set accent_id = rainbow | filter(attribute="name", value=accent) | first | get(key="id") %}
     {% for sector_id in range(end=9) %}
       {%- set rainbow_id = (sector_id + accent_id) % 14 -%}
       {%- set rainbow_color = rainbow[rainbow_id].name -%}
-      "sector{{sector_id + 1}}": "#{{ flavor.colors[rainbow_color].hex }}"{% if not loop.last %},{% endif %}
+      "sector{{sector_id + 1}}": "{{ flavor.colors[rainbow_color].hex }}"{% if not loop.last %},{% endif %}
     {% endfor -%}
   },
-  "cellText": "#{{ text.hex }}",
-  "tableHeaderBorder": "#{{ surface2.hex }}",
-  "selectedRowText": "#{{ mantle.hex }}",
-  "selectedRowBackground": "#{{ flavor.colors[accent].hex }}",
-  "markedRowText": "#{{ mantle.hex }}",
-  "markedRowBackground": "#{%- if accent == "mauve" -%}{{ maroon.hex }}{%- else -%}{{ mauve.hex }}{%- endif -%}",
-  "topFilesText": "#{{ flavor.colors[accent].hex }}",
-  "helpText": "#{{ subtext0.hex }}",
-  "bindingText": "#{{ flavor.colors[accent].hex }}",
-  "dialogBoxBorder": "#{{ red.hex }}",
-  "confirmButtonText": "#{{ text.hex }}",
-  "confirmButtonBackground": "#{{ crust.hex }}",
-  "activeButtonText": "#{{ mantle.hex }}",
-  "activeButtonBackground": "#{{ flavor.colors[accent].hex }}",
-  "diffAddedMarker": "#{{ self::darken_if_accent(color=green) }}",
-  "diffRemovedMarker": "#{{ self::darken_if_accent(color=red) }}",
-  "filterText": "#{{ flavor.colors[accent].hex }}",
-  "usageThresholdText": "#{{ self::darken_if_accent(color=red) }}",
+  "cellText": "{{ text.hex }}",
+  "tableHeaderBorder": "{{ surface2.hex }}",
+  "selectedRowText": "{{ mantle.hex }}",
+  "selectedRowBackground": "{{ flavor.colors[accent].hex }}",
+  "markedRowText": "{{ mantle.hex }}",
+  "markedRowBackground": "{%- if accent == "mauve" -%}{{ maroon.hex }}{%- else -%}{{ mauve.hex }}{%- endif -%}",
+  "topFilesText": "{{ flavor.colors[accent].hex }}",
+  "helpText": "{{ subtext0.hex }}",
+  "bindingText": "{{ flavor.colors[accent].hex }}",
+  "dialogBoxBorder": "{{ red.hex }}",
+  "confirmButtonText": "{{ text.hex }}",
+  "confirmButtonBackground": "{{ crust.hex }}",
+  "activeButtonText": "{{ mantle.hex }}",
+  "activeButtonBackground": "{{ flavor.colors[accent].hex }}",
+  "diffAddedMarker": "{{ self::darken_if_accent(color=green) }}",
+  "diffRemovedMarker": "{{ self::darken_if_accent(color=red) }}",
+  "filterText": "{{ flavor.colors[accent].hex }}",
+  "usageThresholdText": "{{ self::darken_if_accent(color=red) }}",
   "sizeUnit": {
-    "gb": "#{{ self::darken_if_accent(color=flamingo) }}",
-    "tb": "#{{ self::darken_if_accent(color=yellow) }}",
-    "pb": "#{{ self::darken_if_accent(color=peach) }}",
-    "eb": "#{{ self::darken_if_accent(color=red) }}",
+    "gb": "{{ self::darken_if_accent(color=flamingo) }}",
+    "tb": "{{ self::darken_if_accent(color=yellow) }}",
+    "pb": "{{ self::darken_if_accent(color=peach) }}",
+    "eb": "{{ self::darken_if_accent(color=red) }}",
   },
   "scanProgressBar": {
-    "startColor": "#{{ mauve.hex }}",
-    "endColor": "#{{ teal.hex }}"
+    "startColor": "{{ mauve.hex }}",
+    "endColor": "{{ teal.hex }}"
   }
 }
