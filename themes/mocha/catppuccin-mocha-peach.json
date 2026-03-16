@@ -49,10 +49,10 @@
   "filterText": "#fab387",
   "usageThresholdText": "#f38ba8",
   "sizeUnit": {
-    "GB": "#f2cdcd",
-    "TB": "#f9e2af",
-    "PB": "#fab387",
-    "EB": "#f38ba8",
+    "gb": "#f2cdcd",
+    "tb": "#f9e2af",
+    "pb": "#fab387",
+    "eb": "#f38ba8",
   },
   "scanProgressBar": {
     "startColor": "#cba6f7",
